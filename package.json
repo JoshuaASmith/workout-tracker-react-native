@@ -23,6 +23,8 @@
     "ramda": "^0.23.0",
     "react": "16.0.0-alpha.6",
     "react-native": "^0.43.4",
+    "react-native-elements": "^0.11.1",
+    "react-native-keyboard-aware-scroll-view": "^0.2.8",
     "react-native-style-tachyons": "^3.3.2",
     "react-redux": "^5.0.4",
     "react-router-native": "^4.1.1",

@@ -2,8 +2,10 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Constants } from 'expo'
 import Form from './containers/form'
+import List from './containers/list'
 import store from './store'
 import { Provider } from 'react-redux'
+import { NativeRouter, Route } from 'react-router-native'
 import NativeTachyons from 'react-native-style-tachyons'
 NativeTachyons.build(
   {
@@ -15,10 +17,13 @@ NativeTachyons.build(
 class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Workout Tracker</Text>
-        <Form />
-      </View>
+      <NativeRouter>
+        <View style={styles.container}>
+          <Text>Workout Tracker</Text>
+          <Route exact path="/" component={Form} />
+          <Route path="/list" component={List} />
+        </View>
+      </NativeRouter>
     )
   }
 }

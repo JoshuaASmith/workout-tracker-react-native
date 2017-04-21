@@ -1,13 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import { set, lensProp } from 'ramda'
+import { set, lensProp, append } from 'ramda'
 
 const initialWorkout = {
   pushups: '',
   situps: '',
   milesRun: '',
   milesBiked: '',
-  date: ''
+  date: '',
+  id: new Date()
 }
 
 const store = createStore(
@@ -24,11 +25,21 @@ const store = createStore(
           return set(lensProp('milesBiked'), action.payload, state)
         case 'SET_DATE':
           return set(lensProp('date'), action.payload, state)
+        case 'CLEAR_WORKOUT':
+          return {}
         default:
           return state
       }
     },
-    workouts: () => null
+    workouts: (state = [], action) => {
+      switch (action.type) {
+        case 'SET_WORKOUTS':
+          console.log(action.payload)
+          return append(action.payload, state)
+        default:
+          return state
+      }
+    }
   }),
   applyMiddleware(thunk)
 )
